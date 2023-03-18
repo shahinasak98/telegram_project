@@ -3,16 +3,20 @@ import json
 import random
 
 def option():
+    """Helper function to list out options"""
+
     options = ["Fat","Dumb", "Stupid"]
     return options
 
 def telegram_keyboard():
+    """Helper function to give user with options"""
     keyboard = option()
     keyboard = json.dumps(keyboard)
 
     return keyboard
 
 def choose_joke(data):
+    """Helper function to randomly choose a joke from"""
     jokes = {
      'Stupid': ["""Yo' Mama is so stupid, she needs a recipe to make ice cubes.""",
                 """Yo' Mama is so stupid, she thinks DNA is the National Dyslexics Association."""],
