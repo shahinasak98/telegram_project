@@ -5,7 +5,7 @@ import random
 def option():
     """Helper function to list out options"""
 
-    options = ["Fat","Dumb", "Stupid"]
+    options = ['Fat','Dumb', 'Stupid']
     return options
 
 def telegram_keyboard():
