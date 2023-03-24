@@ -11,10 +11,8 @@ dp = Dispatcher(bot)
 
 
 class Botconsumer(AsyncWebsocketConsumer):
-    async def connect(self):
-        self.bot_token = settings.TELEGRAM_TOKEN
-        self.chat_id = None
-        await self.accept()
+    async def connect():
+        await bot.send_message(chat_id=settings.ADMIN_CHAT_ID, text="Bot started")
 
     @dp.message_handler(content_types=types.ContentType.TEXT)
     async def handle_text_message(message: types.Message):
