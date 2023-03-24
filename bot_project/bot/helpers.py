@@ -5,12 +5,12 @@ import random
 def option():
     """Helper function to list out options"""
 
-    options = ['Fat','Dumb', 'Stupid']
+    options = {'Fat':0,'Dumb':1, 'Stupid':2}
     return options
 
 def telegram_keyboard():
     """Helper function to give user with options"""
-    keyboard = option()
+    keyboard = ["Fat","Dump", "Stupid"]
     keyboard = json.dumps(keyboard)
 
     return keyboard
