@@ -10,7 +10,7 @@ def option():
 
 def telegram_keyboard():
     """Helper function to give user with options"""
-    keyboard = ["Fat","Dump", "Stupid"]
+    keyboard = ["Fat","Dumb", "Stupid"]
     keyboard = json.dumps(keyboard)
 
     return keyboard
