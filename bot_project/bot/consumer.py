@@ -4,7 +4,8 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 from bot.helpers import telegram_keyboard, option, choose_joke
 from django.conf import settings
 from aiogram.utils import executor
-import logging
+
+
 bot = Bot(token=settings.TELEGRAM_TOKEN)
 dp = Dispatcher(bot)
 
