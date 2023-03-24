@@ -29,7 +29,7 @@ def choose_joke(data):
         result_message= random.choice(jokes['Stupid'])
     elif data=="Fat":
         result_message= random.choice(jokes['Fat'])
-    elif data=="Dumb":
+    elif data=="Dumb":                                                  
         result_message= random.choice(jokes['Dumb'])
     else:
         result_message="WRONG CHOICE"
