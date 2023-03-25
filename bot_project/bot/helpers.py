@@ -1,6 +1,6 @@
-
 import json
 import random
+from .models import TelegramOption,TelegramUser
 
 def option():
     """Helper function to list out options"""
@@ -10,13 +10,16 @@ def option():
 
 def telegram_keyboard():
     """Helper function to give user with options"""
-    keyboard = ["Fat","Dumb", "Stupid"]
-    keyboard = json.dumps(keyboard)
 
+    keys = option()
+    keyboard = []
+    for key in keys:
+        keyboard.append(key)
     return keyboard
 
 def choose_joke(data):
     """Helper function to randomly choose a joke from"""
+
     jokes = {
      'Stupid': ["""Yo' Mama is so stupid, she needs a recipe to make ice cubes.""",
                 """Yo' Mama is so stupid, she thinks DNA is the National Dyslexics Association."""],
@@ -34,3 +37,17 @@ def choose_joke(data):
     else:
         result_message="WRONG CHOICE"
     return result_message
+
+
+def user_count():
+    """To get the count of each options selected by user"""
+
+    data = []
+    users = TelegramUser.objects.all()
+    for user in users:
+        option0 = TelegramOption.objects.filter(chat=user.chat_id,choice=0).count()
+        option1 = TelegramOption.objects.filter(chat=user.chat_id,choice=1).count()
+        option2 = TelegramOption.objects.filter(chat=user.chat_id,choice=2).count()
+        content = {'chat_id': user.chat_id, 'option0_count': option0, 'option1_count': option1, 'option2_count': option2}
+        data.append(content)
+    return data

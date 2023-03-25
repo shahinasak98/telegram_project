@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Table with Database Data</title>
+	<style>
+		table, th, td {
+			border: 1px solid black;
+			border-collapse: collapse;
+			padding: 5px;
+		}
+	</style>
+</head>
+<body>
+	<table>
+		<tr>
+			<th>Chat ID</th>
+			<th>Option 0 Count</th>
+			<th>Option 1 Count</th>
+			<th>Option 2 Count</th>
+		</tr>
+		{% for data in database_data %}
+		<tr>
+			<td>{{ data.chat_id }}</td>
+			<td>{{ data.option0_count }}</td>
+			<td>{{ data.option1_count }}</td>
+			<td>{{ data.option2_count }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>
+
+  
