@@ -18,5 +18,5 @@ def TelegramView(request):
 def TelegramCount(request):
     if request.method == 'GET':
         data = user_count()
-        return render(request, 'bot/index.html',{'data': data})
+        return render(request, 'bot/index.html', {'data': data})
  
