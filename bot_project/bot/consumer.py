@@ -20,19 +20,22 @@ class Botconsumer(AsyncWebsocketConsumer):
         chat_id = message.chat.id
         username = message.from_user.full_name
         if message.text == "/start":
-            await bot.send_message(chat_id=chat_id, text=telegram_keyboard())
-        elif message.text in option():
-            choice = option()[message.text]
-            chat = await sync_to_async(TelegramUser.objects.filter)(chat_id=chat_id)
-            if not await sync_to_async(chat.exists)():
-                await sync_to_async(TelegramUser.objects.create)(chat_id=chat_id, user=username)
-            chat = await sync_to_async(TelegramUser.objects.get)(chat_id=chat_id)
-            await sync_to_async(TelegramOption.objects.create)(choice=choice, chat=chat)
-            await bot.send_message(chat_id=chat_id,text=choose_joke(message.text))
+            await bot.send_message(chat_id=chat_id, text="Choose an option", reply_markup=telegram_keyboard())
         else:
             await bot.send_message(chat_id=chat_id,text=f"Thanks for texting {username}, Shahina will let you know what to do. Give a /start message for options of Jokes.Select any from them :).")
 
-        
+    @dp.callback_query_handler()
+    async def handle_callback_query(callback_query: types.CallbackQuery):
+    
+        chat_id = callback_query.message.chat.id
+        choice = callback_query.data
+        username = callback_query.from_user.full_name
+        chat = await sync_to_async(TelegramUser.objects.filter)(chat_id=chat_id)
+        if not await sync_to_async(chat.exists)():
+            await sync_to_async(TelegramUser.objects.create)(chat_id=chat_id, user=username)
+        chat = await sync_to_async(TelegramUser.objects.get)(chat_id=chat_id)
+        await sync_to_async(TelegramOption.objects.create)(choice=choice, chat=chat)
+        await bot.send_message(chat_id=chat_id,text=choose_joke(choice))
         
 
 executor.start_polling(dp, skip_updates=True)

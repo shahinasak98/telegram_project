@@ -1,5 +1,5 @@
-import json
-import random
+from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+import random, json
 from .models import TelegramOption,TelegramUser
 
 def option():
@@ -11,11 +11,12 @@ def option():
 def telegram_keyboard():
     """Helper function to give user with options"""
 
-    keys = option()
-    keyboard = []
-    for key in keys:
-        keyboard.append(key)
-    return keyboard
+    button1 = InlineKeyboardButton(text="Fat",callback_data=0)
+    button2 = InlineKeyboardButton(text="Dumb",callback_data=1)
+    button3 = InlineKeyboardButton(text="Stupid",callback_data=2)
+    keyboard = InlineKeyboardMarkup().add(button1, button2, button3)
+    keyboard_json = json.dumps(keyboard.to_python())
+    return keyboard_json
 
 def choose_joke(data):
     """Helper function to randomly choose a joke from"""
@@ -28,12 +29,12 @@ def choose_joke(data):
      'Dumb':   ["""Yo' Mama is so dumb, when God was giving out brains, she thought they were milkshakes and asked for extra thick.""",
                 """Yo' Mama is so dumb, she locked her keys inside her motorcycle."""] 
      }
-    if data=="Stupid":
-        result_message= random.choice(jokes['Stupid'])
-    elif data=="Fat":
+    if data==str(0):
         result_message= random.choice(jokes['Fat'])
-    elif data=="Dumb":                                                  
+    elif data==str(1):
         result_message= random.choice(jokes['Dumb'])
+    elif data==str(2):                                                  
+        result_message= random.choice(jokes['Stupid'])
     else:
         result_message="WRONG CHOICE"
     return result_message
