@@ -2,7 +2,7 @@ from aiogram import Bot, Dispatcher,types
 from asgiref.sync import sync_to_async
 from django.conf import settings
 from channels.generic.websocket import AsyncWebsocketConsumer
-from bot.helpers import telegram_keyboard, option, choose_joke
+from bot.helpers import telegram_keyboard, choose_joke
 from django.conf import settings
 from aiogram.utils import executor
 from .models import TelegramUser,TelegramOption
